@@ -1,27 +1,16 @@
-[![Stand With Palestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/banner-no-action.svg)](https://thebsd.github.io/StandWithPalestine)
-
 <p align="center"><img src="https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/logo/logo.svg?sanitize=true" width="600"/></p>
 <h1 align="center"> 
 Easy and Fast internationalization for your Flutter Apps
 </h1>
 
-[![Pub Version](https://img.shields.io/pub/v/easy_localization_plus?style=flat-square&logo=dart)](https://pub.dev/packages/easy_localization_plus)
-[![likes](https://badges.bar/easy_localization_plus/likes)](https://pub.dev/packages/easy_localization_plus/score)
-[![likes](https://badges.bar/easy_localization_plus/popularity)](https://pub.dev/packages/easy_localization_plus/score)
-[![likes](https://badges.bar/easy_localization_plus/pub%20points)](https://pub.dev/packages/easy_localization_plus/score)
 ![Code Climate issues](https://img.shields.io/github/issues/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub contributors](https://img.shields.io/github/contributors/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub forks](https://img.shields.io/github/forks/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub stars](https://img.shields.io/github/stars/JavedNicolas/easy_localization_plus?style=flat-square)
-![Coveralls github branch](https://img.shields.io/coveralls/github/JavedNicolas/easy_localization_plus/develop?style=flat-square)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JavedNicolas/easy_localization_plus/Flutter%20Tester?longCache=true&style=flat-square&logo=github)
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub license](https://img.shields.io/github/license/JavedNicolas/easy_localization_plus?style=flat-square)
-![Sponsors](https://img.shields.io/opencollective/all/flutter_easy_localization?style=flat-square)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
-[![StandWithPalestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg)](https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md)
 
 > **easy_localization_plus** is a maintained fork of [easy_localization](https://github.com/aissat/easy_localization), which is no longer maintained. The API is the same: only the package name changes. See [Migrating from easy_localization](#migrating-from-easy_localization).
 
@@ -679,22 +668,6 @@ Locale('en', 'US').toStringWithSeparator(separator: '|') // en|US
 | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | ![Arabic RTL](https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/screenshots/Screenshot_ar.png "Arabic RTL") | ![English LTR](https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/screenshots/Screenshot_en.png "English LTR") | ![Error widget](https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/screenshots/Screenshot_err.png "Error widget") |
 
-## Donations
+## Contributors thanks
 
-We need your support. Projects like this can not be successful without support from the community. If you find this project useful, and would like to support further development and ongoing maintenance, please consider donating.
-
-<p align="center">
-  <a href="https://opencollective.com/flutter_easy_localization/donate" target="_blank">
-    <img src="https://opencollective.com/flutter_easy_localization/donate/button@2x.png?color=blue" width=300 />
-  </a>
-</p>
-
-### Sponsors
-
-<img src="https://opencollective.com/flutter_easy_localization/tiers/backer.svg?avatarHeight=48"/>
-
-
-### Contributors thanks
-
-![contributors](https://contributors-img.firebaseapp.com/image?repo=JavedNicolas/easy_localization_plus)
-<a href="https://github.com/JavedNicolas/easy_localization_plus/graphs/contributors"></a>
+[See all contributors](https://github.com/JavedNicolas/easy_localization_plus/graphs/contributors)
