@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart'
+import 'package:easy_localization_plus/easy_localization_plus.dart'
     show AssetLoader, JsonLinkedFileResolver, RootBundleFileLoader;
 
 class ImmutableJsonAssetLoader extends AssetLoader {

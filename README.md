@@ -1,29 +1,31 @@
 [![Stand With Palestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/banner-no-action.svg)](https://thebsd.github.io/StandWithPalestine)
 
-<p align="center"><img src="https://raw.githubusercontent.com/aissat/easy_localization/develop/logo/logo.svg?sanitize=true" width="600"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/logo/logo.svg?sanitize=true" width="600"/></p>
 <h1 align="center"> 
 Easy and Fast internationalization for your Flutter Apps
 </h1>
 
-[![Pub Version](https://img.shields.io/pub/v/easy_localization?style=flat-square&logo=dart)](https://pub.dev/packages/easy_localization)
-[![likes](https://badges.bar/easy_localization/likes)](https://pub.dev/packages/easy_localization/score)
-[![likes](https://badges.bar/easy_localization/popularity)](https://pub.dev/packages/easy_localization/score)
-[![likes](https://badges.bar/easy_localization/pub%20points)](https://pub.dev/packages/easy_localization/score)
-![Code Climate issues](https://img.shields.io/github/issues/aissat/easy_localization?style=flat-square)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/aissat/easy_localization?style=flat-square)
-![GitHub contributors](https://img.shields.io/github/contributors/aissat/easy_localization?style=flat-square)
-![GitHub repo size](https://img.shields.io/github/repo-size/aissat/easy_localization?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/aissat/easy_localization?style=flat-square)
-![GitHub stars](https://img.shields.io/github/stars/aissat/easy_localization?style=flat-square)
-![Coveralls github branch](https://img.shields.io/coveralls/github/aissat/easy_localization/dev?style=flat-square)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/aissat/easy_localization/Flutter%20Tester?longCache=true&style=flat-square&logo=github)
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/aissat/easy_localization?style=flat-square)
-![GitHub license](https://img.shields.io/github/license/aissat/easy_localization?style=flat-square)
+[![Pub Version](https://img.shields.io/pub/v/easy_localization_plus?style=flat-square&logo=dart)](https://pub.dev/packages/easy_localization_plus)
+[![likes](https://badges.bar/easy_localization_plus/likes)](https://pub.dev/packages/easy_localization_plus/score)
+[![likes](https://badges.bar/easy_localization_plus/popularity)](https://pub.dev/packages/easy_localization_plus/score)
+[![likes](https://badges.bar/easy_localization_plus/pub%20points)](https://pub.dev/packages/easy_localization_plus/score)
+![Code Climate issues](https://img.shields.io/github/issues/JavedNicolas/easy_localization_plus?style=flat-square)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/JavedNicolas/easy_localization_plus?style=flat-square)
+![GitHub contributors](https://img.shields.io/github/contributors/JavedNicolas/easy_localization_plus?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/JavedNicolas/easy_localization_plus?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/JavedNicolas/easy_localization_plus?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/JavedNicolas/easy_localization_plus?style=flat-square)
+![Coveralls github branch](https://img.shields.io/coveralls/github/JavedNicolas/easy_localization_plus/develop?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JavedNicolas/easy_localization_plus/Flutter%20Tester?longCache=true&style=flat-square&logo=github)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/JavedNicolas/easy_localization_plus?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/JavedNicolas/easy_localization_plus?style=flat-square)
 ![Sponsors](https://img.shields.io/opencollective/all/flutter_easy_localization?style=flat-square)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 [![StandWithPalestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/badges/StandWithPalestine.svg)](https://github.com/TheBSD/StandWithPalestine/blob/main/docs/README.md)
 
-## Why easy_localization?
+> **easy_localization_plus** is a maintained fork of [easy_localization](https://github.com/aissat/easy_localization), which is no longer maintained. The API is the same: only the package name changes. See [Migrating from easy_localization](#migrating-from-easy_localization).
+
+## Why easy_localization_plus?
 
 - 🚀 Easy translations for many languages
 - 🔌 Load translations as JSON, CSV, Yaml, Xml using [Easy Localization Loader](https://github.com/aissat/easy_localization_loader)
@@ -44,8 +46,16 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  easy_localization: <last_version>
+  easy_localization_plus: <last_version>
 ```
+
+### Migrating from easy_localization
+
+1. In your `pubspec.yaml`, replace the `easy_localization` dependency with `easy_localization_plus`.
+2. Replace the imports `package:easy_localization/easy_localization.dart` with `package:easy_localization_plus/easy_localization_plus.dart`.
+3. Replace the commands `easy_localization:generate` and `easy_localization:audit` with `easy_localization_plus:generate` and `easy_localization_plus:audit`, then generate your files again: the generated files import the package.
+
+Class names, extensions and the saved locale are unchanged.
 
 Create folder and add translation files like this
 
@@ -103,7 +113,7 @@ Add EasyLocalization widget like in example
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization_plus/easy_localization_plus.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -132,7 +142,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-[**Full example**](https://github.com/aissat/easy_localization/blob/master/example/lib/main.dart)
+[**Full example**](https://github.com/JavedNicolas/easy_localization_plus/blob/develop/example/lib/main.dart)
 
 ### 📜 Easy localization widget properties
 
@@ -322,7 +332,7 @@ var money = plural('money_named_args', 10.23, namedArgs: {'name': 'Jane'}, name:
 ### ⚙️ Configuring Plural Rules with `ignorePluralRules`
 
 In some languages, pluralization is simple and only involves using zero, one, two, and other forms, without needing to handle the `few` or `many` categories.  
-By default, `easy_localization` ignores the `few` and `many` plural forms and uses just the zero, one, two, and other forms.
+By default, `easy_localization_plus` ignores the `few` and `many` plural forms and uses just the zero, one, two, and other forms.
 
 If you want to enable the handling of the `few` and `many` plural categories for specific languages, you can configure the `ignorePluralRules` flag to `false` in the `EasyLocalization` initialization.
 
@@ -493,7 +503,7 @@ print(context.fallbackLocale); // output: en_US
 
 ## 💻 Code generation
 
-Code generation supports only json files, for more information run in terminal `flutter pub run easy_localization:generate -h`
+Code generation supports only json files, for more information run in terminal `flutter pub run easy_localization_plus:generate -h`
 
 ### Command line arguments
 
@@ -512,7 +522,7 @@ Code generation supports only json files, for more information run in terminal `
 Steps:
 
 1. Open your terminal in the folder's path containing your project
-2. Run in terminal `flutter pub run easy_localization:generate`
+2. Run in terminal `flutter pub run easy_localization_plus:generate`
 3. Change asset loader and past import.
 
   ```dart
@@ -556,7 +566,7 @@ If you have many localization keys and are confused, key generation will help yo
 
 Steps:
 1. Open your terminal in the folder's path containing your project 
-2. Run in terminal `flutter pub run easy_localization:generate -f keys -o locale_keys.g.dart`
+2. Run in terminal `flutter pub run easy_localization_plus:generate -f keys -o locale_keys.g.dart`
 3. Past import.
 
 ```dart
@@ -577,7 +587,7 @@ Text(LocaleKeys.title).tr(); //Widget
 If you prefer to not generate keys you can see an audit of your translation keys to see the one present in your app code but not in your translations file by running the audit command.
 
 ```
-flutter pub run easy_localization:audit
+flutter pub run easy_localization_plus:audit
 ```
 
 ### Arguments :
@@ -637,7 +647,7 @@ EasyLogPrinter customLogPrinter = (
 EasyLocalization.logger.printer = customLogPrinter;
 ```
 
-Read more about [Easy Logger](https://github.com/aissat/easy_localization/blob/master/packages/easy_logger/README.md)
+Read more about [Easy Logger](https://github.com/JavedNicolas/easy_localization_plus/blob/develop/packages/easy_logger/README.md)
 
 ## ➕ Extensions helpers
 
@@ -657,7 +667,7 @@ Locale('en', 'US').toStringWithSeparator(separator: '|') // en|US
 
 
 <p align="center">
-    <a href="https://gitpod.io/#https://github.com/aissat/easy_localization" target="_blank">
+    <a href="https://gitpod.io/#https://github.com/JavedNicolas/easy_localization_plus" target="_blank">
         <img src="https://gitpod.io/button/open-in-gitpod.svg" width=200 />
     </a>
 </p>
@@ -667,7 +677,7 @@ Locale('en', 'US').toStringWithSeparator(separator: '|') // en|US
 
 | Arabic RTL                                                                                                                  | English LTR                                                                                                                   | Error widget                                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| ![Arabic RTL](https://raw.githubusercontent.com/aissat/easy_localization/master/screenshots/Screenshot_ar.png "Arabic RTL") | ![English LTR](https://raw.githubusercontent.com/aissat/easy_localization/master/screenshots/Screenshot_en.png "English LTR") | ![Error widget](https://raw.githubusercontent.com/aissat/easy_localization/master/screenshots/Screenshot_err.png "Error widget") |
+| ![Arabic RTL](https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/screenshots/Screenshot_ar.png "Arabic RTL") | ![English LTR](https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/screenshots/Screenshot_en.png "English LTR") | ![Error widget](https://raw.githubusercontent.com/JavedNicolas/easy_localization_plus/develop/screenshots/Screenshot_err.png "Error widget") |
 
 ## Donations
 
@@ -686,5 +696,5 @@ We need your support. Projects like this can not be successful without support f
 
 ### Contributors thanks
 
-![contributors](https://contributors-img.firebaseapp.com/image?repo=aissat/easy_localization)
-<a href="https://github.com/aissat/easy_localization/graphs/contributors"></a>
+![contributors](https://contributors-img.firebaseapp.com/image?repo=JavedNicolas/easy_localization_plus)
+<a href="https://github.com/JavedNicolas/easy_localization_plus/graphs/contributors"></a>

@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization_plus/easy_localization_plus.dart';
 import 'package:flutter/widgets.dart';
 
 import 'plural_rules.dart';

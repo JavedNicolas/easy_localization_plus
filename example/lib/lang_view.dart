@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization_plus/easy_localization_plus.dart';
 
 class LanguageView extends StatelessWidget {
   @override

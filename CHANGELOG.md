@@ -1,5 +1,9 @@
 # Changelog
 
+### [Unreleased]
+
+- Renamed the package to `easy_localization_plus`, a maintained fork of `easy_localization`. See "Migrating from easy_localization" in the README.
+
 ### [3.0.9]
 
 - Added support for linked files feature
