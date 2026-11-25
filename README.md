@@ -358,6 +358,25 @@ Example:
 print('example.helloWorld'.tr()); //Output: Hello World!
 ```
 
+A linked message can itself contain links, they are resolved too. A link that leads back to a message being resolved is circular: it is not resolved and a warning is logged.
+
+```json
+{
+  ...
+  "example": {
+    "hello": "Hello",
+    "world": "World!",
+    "helloWorld": "@:example.hello @:example.world",
+    "greeting": "@:example.helloWorld How are you?"
+  }
+  ...
+}
+```
+
+```dart
+print('example.greeting'.tr()); //Output: Hello World! How are you?
+```
+
 You can also do nested anonymous and named arguments inside the linked messages.
 
 Example:
