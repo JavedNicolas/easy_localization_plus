@@ -8,6 +8,7 @@
 - Fixed two links sharing a prefix (`@:a @:a.b`): the second one was not resolved.
 - Fixed a crash when `@.capitalize:` links to an empty message.
 - Fixed `startLocale` being ignored when `saveLocale` is `false` and a locale is saved in SharedPreferences (#430).
+- Added the `--class-name` (`-c`) option to `generate`, to choose the name of the generated keys class (`LocaleKeys` by default).
 
 ### [3.0.9]
 
@@ -65,9 +66,11 @@
 - **BREAKING**: removed context parameter from `plural()` and `tr()`
 - Added Formatting linked translations [more](https://github.com/aissat/easy_localization#linked-translations)
 - Updated `plural()` function, with arguments [more](https://github.com/aissat/easy_localization#linked-translations)
+
   ```dart
     var money = plural('money_args', 10.23, args: ['John', '10.23'])  // output: John has 10.23 dollars
   ```
+
 - Removed preloader widget ~~`preloaderWidget`~~
 - fixed many issues.
 - customizable logger [EasyLogger]
@@ -98,6 +101,7 @@
 ```dart
 context.locale = locale;
 ```
+
 :information_source: No breaking changes, you can use old the static method `EasyLocalization.of(context)`
 
 ### [2.2.2]
