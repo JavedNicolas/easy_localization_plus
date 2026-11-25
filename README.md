@@ -447,7 +447,7 @@ assets
         └── notifications.json  
 ```
 
-Each linked file must contain a valid object of translation keys (of the file type you are using [Other file types](#-loading-translations-from-other-resources)).  
+Each linked file must contain a valid JSON object of translation keys.  
 
 Don't forget to add your linked files (or linked files folder, here assets/translations/en-US/), to your pubspec.yaml : [See installation](#-installation).
 
