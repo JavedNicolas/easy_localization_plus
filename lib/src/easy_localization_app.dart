@@ -135,10 +135,7 @@ class EasyLocalization extends StatefulWidget {
     this.useFallbackTranslations = false,
     this.useFallbackTranslationsForEmptyResources = false,
     this.ignorePluralRules = true,
-    this.assetLoader = const RootBundleAssetLoader(
-      fileLoader: RootBundleFileLoader(),
-      linkedFileResolver: JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
-    ),
+    this.assetLoader = const RootBundleAssetLoader(),
     this.extraAssetLoaders,
     this.saveLocale = true,
     this.errorWidget,

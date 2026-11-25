@@ -13,6 +13,21 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   group('Asset Loader - Linked Translation Files', () {
+    test('RootBundleAssetLoader reads JSON assets with linked files by default', () {
+      const loader = RootBundleAssetLoader();
+
+      expect(loader.fileLoader, isA<RootBundleFileLoader>());
+      expect(loader.linkedFileResolver, isA<JsonLinkedFileResolver>());
+      expect(loader.linkedFileResolver.fileLoader, isA<RootBundleFileLoader>());
+    });
+
+    test('RootBundleAssetLoader reads linked files with its own file loader', () {
+      const fileLoader = _FakeFileLoader();
+      const loader = RootBundleAssetLoader(fileLoader: fileLoader);
+
+      expect(loader.linkedFileResolver.fileLoader, same(fileLoader));
+    });
+
     group('RootBundleAssetLoader with linked files', () {
       test('should load single linked file', () async {
         final controller = EasyLocalizationController(
@@ -216,4 +231,11 @@ void main() async {
       });
     });
   });
+}
+
+class _FakeFileLoader implements FileLoader {
+  const _FakeFileLoader();
+
+  @override
+  Future<String> loadString(String path) async => '{}';
 }

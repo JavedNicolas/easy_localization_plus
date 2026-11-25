@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:easy_localization_plus/easy_localization_plus.dart';
-import 'package:easy_localization_plus/src/file_loaders/file_loader.dart';
 import 'package:easy_localization_plus/src/file_loaders/io_file_loader.dart';
 
 /// abstract class used to building your Custom AssetLoader
@@ -16,11 +15,7 @@ import 'package:easy_localization_plus/src/file_loaders/io_file_loader.dart';
 ///}
 /// ```
 abstract class AssetLoader {
-  // Place inside class RootBundleAssetLoader
-  final FileLoader fileLoader;
-  final LinkedFileResolver linkedFileResolver;
-
-  const AssetLoader({required this.linkedFileResolver, required this.fileLoader});
+  const AssetLoader();
 
   Future<Map<String, dynamic>?> load(String path, Locale locale);
 }
@@ -29,8 +24,21 @@ abstract class AssetLoader {
 /// default used is RootBundleAssetLoader which uses flutter's assetloader
 ///
 class RootBundleAssetLoader extends AssetLoader {
-  const RootBundleAssetLoader({required LinkedFileResolver linkedFileResolver, required FileLoader fileLoader})
-      : super(linkedFileResolver: linkedFileResolver, fileLoader: fileLoader);
+  /// Reads the translation files: from the Flutter assets by default.
+  final FileLoader fileLoader;
+
+  final LinkedFileResolver? _linkedFileResolver;
+
+  /// Replaces the `":/file.json"` values with the content of the linked
+  /// files. By default, a [JsonLinkedFileResolver] that reads the linked
+  /// files with [fileLoader].
+  LinkedFileResolver get linkedFileResolver =>
+      _linkedFileResolver ?? JsonLinkedFileResolver(fileLoader: fileLoader);
+
+  const RootBundleAssetLoader({
+    this.fileLoader = const RootBundleFileLoader(),
+    LinkedFileResolver? linkedFileResolver,
+  }) : _linkedFileResolver = linkedFileResolver;
 
   factory RootBundleAssetLoader.fromRootBundle() {
     return const RootBundleAssetLoader(
