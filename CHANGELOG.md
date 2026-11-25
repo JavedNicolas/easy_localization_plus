@@ -4,6 +4,9 @@
 
 - Renamed the package to `easy_localization_plus`, a maintained fork of `easy_localization`. See "Migrating from easy_localization" in the README.
 - `easy_localization_loader` does not work with `easy_localization_plus`: only JSON files are supported. For other formats, write your own class extending `AssetLoader`.
+- Linked messages (`@:key`) can contain links, which are resolved too. Circular links are not resolved and log a warning.
+- Fixed two links sharing a prefix (`@:a @:a.b`): the second one was not resolved.
+- Fixed a crash when `@.capitalize:` links to an empty message.
 
 ### [3.0.9]
 

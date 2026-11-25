@@ -358,6 +358,25 @@ Example:
 print('example.helloWorld'.tr()); //Output: Hello World!
 ```
 
+A linked message can itself contain links, they are resolved too. A link that leads back to a message being resolved is circular: it is not resolved and a warning is logged.
+
+```json
+{
+  ...
+  "example": {
+    "hello": "Hello",
+    "world": "World!",
+    "helloWorld": "@:example.hello @:example.world",
+    "greeting": "@:example.helloWorld How are you?"
+  }
+  ...
+}
+```
+
+```dart
+print('example.greeting'.tr()); //Output: Hello World! How are you?
+```
+
 You can also do nested anonymous and named arguments inside the linked messages.
 
 Example:
@@ -428,7 +447,7 @@ assets
         └── notifications.json  
 ```
 
-Each linked file must contain a valid object of translation keys (of the file type you are using [Other file types](#-loading-translations-from-other-resources)).  
+Each linked file must contain a valid JSON object of translation keys.  
 
 Don't forget to add your linked files (or linked files folder, here assets/translations/en-US/), to your pubspec.yaml : [See installation](#-installation).
 

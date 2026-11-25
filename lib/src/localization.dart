@@ -55,25 +55,29 @@ class Localization {
   }) {
     late String res;
 
+    final resolvedKey = gender != null ? '$key.$gender' : key;
     if (gender != null) {
       res = _gender(key, gender: gender);
     } else {
       res = _resolve(key);
     }
 
-    res = _replaceLinks(res);
+    res = _replaceLinks(res, resolving: [resolvedKey]);
 
     res = _replaceNamedArgs(res, namedArgs);
 
     return _replaceArgs(res, args);
   }
 
-  String _replaceLinks(String res, {bool logging = true}) {
-    // TODO: add recursion detection and a resolve stack.
-    final matches = _linkKeyMatcher.allMatches(res);
-    var result = res;
-
-    for (final match in matches) {
+  /// Replaces each link of [res] with the message it points to, after
+  /// replacing the links of that message. [resolving] holds the keys being
+  /// resolved: a link to one of them is circular and is left as is.
+  String _replaceLinks(
+    String res, {
+    bool logging = true,
+    List<String> resolving = const [],
+  }) {
+    return res.replaceAllMapped(_linkKeyMatcher, (match) {
       final link = match[0]!;
       final linkPrefixMatches = _linkKeyPrefixMatcher.allMatches(link);
       final linkPrefix = linkPrefixMatches.first[0]!;
@@ -83,7 +87,21 @@ class Localization {
       final linkPlaceholder =
           link.replaceAll(linkPrefix, '').replaceAll(_bracketsMatcher, '');
 
-      var translated = _resolve(linkPlaceholder);
+      if (resolving.contains(linkPlaceholder)) {
+        if (logging) {
+          EasyLocalization.logger.warning(
+              'Circular link: ${[...resolving, linkPlaceholder].join(' -> ')}');
+        }
+        return link;
+      }
+
+      var translated = _replaceLinks(
+        _resolve(linkPlaceholder),
+        logging: logging,
+        resolving: [...resolving, linkPlaceholder],
+      );
+
+      if (translated.isEmpty) return link;
 
       if (formatterName != null) {
         if (_modifiers.containsKey(formatterName)) {
@@ -96,11 +114,8 @@ class Localization {
         }
       }
 
-      result =
-          translated.isEmpty ? result : result.replaceAll(link, translated);
-    }
-
-    return result;
+      return translated;
+    });
   }
 
   String _replaceArgs(String res, List<String>? args) {

@@ -298,6 +298,34 @@ void main() {
         expect(Localization.instance.tr('linkedWithBrackets'), 'linked with brackets.');
       });
 
+      test('can resolve nested linked locale messages', () {
+        expect(Localization.instance.tr('linkNested'), 'this is nested link');
+      });
+
+      test('applies modifiers after resolving nested links', () {
+        expect(Localization.instance.tr('linkNestedModified'), 'NESTED LINK');
+      });
+
+      test('keeps a link to an empty message', () {
+        expect(Localization.instance.tr('linkToEmpty'), 'empty @:test_empty');
+      });
+
+      test('keeps a capitalized link to an empty message', () {
+        expect(Localization.instance.tr('linkCapitalizeEmpty'), 'empty @.capitalize:test_empty');
+      });
+
+      test('stops on a message linking to itself', () {
+        expect(Localization.instance.tr('linkSelf'), 'self @:linkSelf');
+      });
+
+      test('stops on messages linking to each other', () {
+        expect(Localization.instance.tr('linkCycleA'), 'b @:linkCycleA');
+      });
+
+      test('resolves links sharing a prefix', () {
+        expect(Localization.instance.tr('linkSharedPrefix'), 'is linked twice');
+      });
+
       test('can resolve any number of nested arguments', () {
         expect(Localization.instance.tr('nestedArguments', args: ['a', 'argument', '!']), 'this is a nested argument!');
       });
