@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:easy_localization/src/linked_file_resolver.dart';
+import 'package:easy_localization_plus/src/linked_file_resolver.dart';
 import 'package:path/path.dart';
-import 'package:easy_localization/src/file_loaders/io_file_loader.dart';
+import 'package:easy_localization_plus/src/file_loaders/io_file_loader.dart';
 
 enum KeyPatternType {
   trFunction(pattern: r"""\btr\s*\(\s*['"]([^'"]+)['"](?:(?!gender\s*:)[^)])*\)"""),

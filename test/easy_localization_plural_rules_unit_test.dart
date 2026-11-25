@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:easy_localization/src/easy_localization_controller.dart';
-import 'package:easy_localization/src/localization.dart';
+import 'package:easy_localization_plus/src/easy_localization_controller.dart';
+import 'package:easy_localization_plus/src/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
