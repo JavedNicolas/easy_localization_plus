@@ -3,6 +3,7 @@
 Easy and Fast internationalization for your Flutter Apps
 </h1>
 
+[![Pub Version](https://img.shields.io/pub/v/easy_localization_plus?style=flat-square&logo=dart)](https://pub.dev/packages/easy_localization_plus)
 ![Code Climate issues](https://img.shields.io/github/issues/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/JavedNicolas/easy_localization_plus?style=flat-square)
 ![GitHub contributors](https://img.shields.io/github/contributors/JavedNicolas/easy_localization_plus?style=flat-square)
