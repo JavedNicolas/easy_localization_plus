@@ -92,15 +92,7 @@ void main() async{
     // useOnlyLangCode: true,
 
     // optional assetLoader default used is RootBundleAssetLoader which uses flutter's assetloader
-    // install easy_localization_loader for enable custom loaders
     // assetLoader: RootBundleAssetLoader()
-    // assetLoader: HttpAssetLoader()
-    // assetLoader: FileAssetLoader()
-    assetLoader: CsvAssetLoader()
-    // assetLoader: YamlAssetLoader() //multiple files
-    // assetLoader: YamlSingleAssetLoader() //single file
-    // assetLoader: XmlAssetLoader() //multiple files
-    // assetLoader: XmlSingleAssetLoader() //single file
     
     // assetLoader: CodegenLoader() 
   ));

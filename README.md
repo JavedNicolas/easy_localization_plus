@@ -17,7 +17,7 @@ Easy and Fast internationalization for your Flutter Apps
 ## Why easy_localization_plus?
 
 - 🚀 Easy translations for many languages
-- 🔌 Load translations as JSON, CSV, Yaml, Xml using [Easy Localization Loader](https://github.com/aissat/easy_localization_loader)
+- 🔌 Load translations from JSON files
 - 💾 React and persist to locale changes
 - ⚡ Supports plural, gender, nesting, RTL locales and more
 - ↩️ Fallback locale keys redirection
@@ -46,6 +46,8 @@ dependencies:
 
 Class names, extensions and the saved locale are unchanged.
 
+[easy_localization_loader](https://github.com/aissat/easy_localization_loader) does not work with easy_localization_plus: only JSON files are supported. If you load your translations from CSV, YAML, XML files or from the network, write your own class extending `AssetLoader`.
+
 Create folder and add translation files like this
 
 ```
@@ -73,12 +75,6 @@ flutter:
 ```
 
 
-
-### 🔌 Loading translations from other resources
-
-You can use JSON,CSV,HTTP,XML,Yaml files, etc.
-
-See [Easy Localization Loader](https://github.com/aissat/easy_localization_loader) for more info.
 
 ### ⚠️ Note on **iOS**
 
@@ -141,8 +137,8 @@ class MyApp extends StatelessWidget {
 | child                   | true     |                           | Place for your main page widget.                                                                                                                                              |
 | supportedLocales        | true     |                           | List of supported locales.                                                                                                                                                    |
 | path                    | true     |                           | Path to your folder with localization files.                                                                                                                                  |
-| assetLoader             | false    | `RootBundleAssetLoader()` | Class loader for localization files. You can use custom loaders from [Easy Localization Loader](https://github.com/aissat/easy_localization_loader) or create your own class. |
-| extraAssetLoaders       | false    | null                      | A List of asset loaders, in case of needing assets being loaded from a different module or package. (e.g. adding a package that uses [Easy Localization Loader]).             |
+| assetLoader             | false    | `RootBundleAssetLoader()` | Class loader for localization files. You can create your own class by extending `AssetLoader`. |
+| extraAssetLoaders       | false    | null                      | A List of asset loaders, in case of needing assets being loaded from a different module or package. |
 | fallbackLocale          | false    |                           | Returns the locale when the locale is not in the list `supportedLocales`.                                                                                                     |
 | startLocale             | false    |                           | Overrides device locale.                                                                                                                                                      |
 | saveLocale              | false    | `true`                    | Save locale in device storage.                                                                                                                                                |

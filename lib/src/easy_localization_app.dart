@@ -17,8 +17,7 @@ part 'utils.dart';
 ///    runApp(EasyLocalization(
 ///      child: MyApp(),
 ///      supportedLocales: [Locale('en', 'US'), Locale('ar', 'DZ')],
-///      path: 'resources/langs/langs.csv',
-///      assetLoader: CsvAssetLoader()
+///      path: 'resources/langs',
 ///    ));
 ///  }
 ///  ```
@@ -86,18 +85,17 @@ class EasyLocalization extends StatefulWidget {
   /// Example:
   /// ```dart
   /// path: 'assets/translations',
-  /// path: 'assets/translations/lang.csv',
   /// ```
   final String path;
 
   /// Class loader for localization files.
-  /// You can use custom loaders from [Easy Localization Loader](https://github.com/aissat/easy_localization_loader) or create your own class.
+  /// You can create your own class by extending [AssetLoader].
   /// @Default value `const RootBundleAssetLoader()`
   // ignore: prefer_typing_uninitialized_variables
   final AssetLoader assetLoader;
 
   /// Class loader for localization files that belong to other packages.
-  /// You can use custom loaders from [Easy Localization Loader](https://github.com/aissat/easy_localization_loader) or create your own class.
+  /// You can create your own class by extending [AssetLoader].
   /// Example:
   /// ```dart
   //   runApp(

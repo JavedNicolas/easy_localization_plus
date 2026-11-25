@@ -3,6 +3,7 @@
 ### [Unreleased]
 
 - Renamed the package to `easy_localization_plus`, a maintained fork of `easy_localization`. See "Migrating from easy_localization" in the README.
+- `easy_localization_loader` does not work with `easy_localization_plus`: only JSON files are supported. For other formats, write your own class extending `AssetLoader`.
 
 ### [3.0.9]
 
