@@ -1,24 +1,32 @@
 # Changelog
 
-### [Unreleased]
+### [3.1.0]
 
-- Renamed the package to `easy_localization_plus`, a maintained fork of `easy_localization`. See "Migrating from easy_localization" in the README.
+First release of `easy_localization_plus`, a maintained fork of `easy_localization` 3.0.8. The versions below 3.1.0 are those of `easy_localization`. See "Migrating from easy_localization" in the README.
+
+#### Changes from easy_localization 3.0.8
+
+- The package is renamed: imports become `package:easy_localization_plus/easy_localization_plus.dart`, and the commands `easy_localization_plus:generate` and `easy_localization_plus:audit`.
 - `easy_localization_loader` does not work with `easy_localization_plus`: only JSON files are supported. For other formats, write your own class extending `AssetLoader`.
-- Linked messages (`@:key`) can contain links, which are resolved too. Circular links are not resolved and log a warning.
-- Fixed two links sharing a prefix (`@:a @:a.b`): the second one was not resolved.
-- Fixed a crash when `@.capitalize:` links to an empty message.
-- Fixed `startLocale` being ignored when `saveLocale` is `false` and a locale is saved in SharedPreferences (#430).
-- Added the `--class-name` (`-c`) option to `generate`, to choose the name of the generated keys class (`LocaleKeys` by default).
-- `audit` takes the same `--class-name` option, to find the keys used through a custom keys class. `generate` refuses a class name that is not a valid Dart identifier.
-- Fixed `generate -f json` writing a `CodegenLoader` that did not compile. `fileLoader` and `linkedFileResolver` moved from `AssetLoader` to `RootBundleAssetLoader`, with default values: custom `AssetLoader` classes and `const RootBundleAssetLoader()` compile again, as in 3.0.8. `FileLoader` is exported, to pass your own to `RootBundleAssetLoader`.
-- Fixed `tr()` crashing when a key leads to nested keys (plural or gender forms, an object) instead of a text: the key is displayed and a warning says why. A key going through a text (`title.foo`) no longer returns the text of `title`.
+- With `saveLocale: false`, a locale saved in SharedPreferences no longer overrides `startLocale` (#430).
+- Links inside a linked message (`@:key`) are resolved, where they used to stay visible. Circular links are not resolved and log a warning.
+- A key going through a text (`title.foo`) returns the key, where it used to return the text of `title`.
+- A translation value starting with `:/` is read as a linked file.
+- Dart 2.17 or later is required.
+
+#### Added
+
+- Linked files: split the translations of a locale into several files with `":/file.json"` values.
+- The `audit` command lists the keys used in the code that are missing from a translation file, or misused: `tr()` on plural or gender forms, `plural()` or a gender on a text, a key leading to nested keys. It exits with code 1 when it finds one.
+- The `--class-name` (`-c`) option of `generate` and `audit`, to choose the name of the generated keys class (`LocaleKeys` by default).
+- `RootBundleAssetLoader` takes an optional `fileLoader` and `linkedFileResolver`, and `FileLoader` is exported to pass your own.
 - The warning logged when a key gives no text says why: the key holds plural or gender forms, leads to nested keys, or is a text used with `plural()` or a gender.
-- `audit` reports misused keys apart from missing ones: `tr()` on plural or gender forms, `plural()` or a gender on a text, a key leading to nested keys. It now finds `'key'.tr()` written with single quotes and `'key'.plural()`, matches the members of the keys class with the names the generator gives them (no more false missing keys for keys with underscores or keys holding plural forms), and reports every language before exiting with code 1.
 
-### [3.0.9]
+#### Fixed
 
-- Added support for linked files feature
-- Enhanced localization file loading capabilities
+- `tr()` no longer crashes when a key leads to nested keys (plural or gender forms, an object): the key is displayed and a warning says why.
+- Two links sharing a prefix (`@:a @:a.b`): the second one was not resolved.
+- A crash when `@.capitalize:` links to an empty message.
 
 ### [3.0.8]
 
