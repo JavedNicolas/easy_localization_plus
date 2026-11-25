@@ -1,0 +1,19 @@
+# Used by pub instead of .gitignore: keep the files ignored by git out of
+# the package too.
+.dart_tool/
+build/
+coverage/
+pubspec.lock
+*.iml
+.idea/
+
+# In the repository, but of no use to the users of the package.
+/i18n/
+/screenshots/
+/logo/
+/example/android/
+/example/ios/
+/example/linux/
+/example/macos/
+/example/web/
+/example/build/
