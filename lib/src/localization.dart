@@ -240,12 +240,43 @@ class Localization {
     return resource;
   }
 
+  static const _pluralForms = {'zero', 'one', 'two', 'few', 'many', 'other'};
+  static const _genderForms = {'male', 'female'};
+
+  /// Says why [key] gave no text in [translations]: missing, or used in a
+  /// way that does not match what it leads to.
   String _keyNotFoundMessage(
       String label, Translations? translations, String key) {
-    if (translations?.hasNestedKeys(key) == true) {
-      return '$label key [$key] leads to nested keys, not to a text: '
-          'use plural(), a gender or a nested key';
+    final nestedKeys = translations?.nestedKeysOf(key);
+    if (nestedKeys != null && nestedKeys.isNotEmpty) {
+      if (nestedKeys.every(_pluralForms.contains)) {
+        return "$label key [$key] holds plural forms: use plural('$key', count)";
+      }
+      if (nestedKeys.any(_genderForms.contains)) {
+        return "$label key [$key] holds gender forms: "
+            "use tr('$key', gender: ...)";
+      }
+      final shown = nestedKeys.length > 3
+          ? '${nestedKeys.take(3).join(', ')}, ...'
+          : nestedKeys.join(', ');
+      return '$label key [$key] leads to nested keys ($shown): '
+          'use one of them, such as $key.${nestedKeys.first}';
     }
+
+    final textKey = translations?.textKeyIn(key);
+    if (textKey != null) {
+      final form = key.substring(textKey.length + 1);
+      if (_pluralForms.contains(form)) {
+        return "$label key [$key] not found: [$textKey] is a text, "
+            "use tr('$textKey') instead of plural()";
+      }
+      if (_genderForms.contains(form)) {
+        return '$label key [$key] not found: [$textKey] is a text, '
+            'remove the gender';
+      }
+      return '$label key [$key] not found: [$textKey] is a text';
+    }
+
     return '$label key [$key] not found';
   }
 

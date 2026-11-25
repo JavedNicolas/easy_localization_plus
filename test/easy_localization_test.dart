@@ -423,17 +423,45 @@ void main() {
         expect(Localization.instance.exists('day'), false);
       });
 
-      test('warns that a key leads to nested keys', overridePrint(() {
+      bool logged(String message) => printLog.any((line) => line.toString().contains(message));
+
+      test('warns that a key holds plural forms', overridePrint(() {
         printLog = [];
         Localization.instance.tr('day');
-        expect(
-          printLog.any((line) => line.toString().contains('Localization key [day] leads to nested keys')),
-          true,
-        );
-        expect(
-          printLog.any((line) => line.toString().contains('Fallback localization key [day] leads to nested keys')),
-          true,
-        );
+        expect(logged("Localization key [day] holds plural forms: use plural('day', count)"), true);
+        expect(logged("Fallback localization key [day] holds plural forms: use plural('day', count)"), true);
+      }));
+
+      test('warns that a key holds gender forms', overridePrint(() {
+        printLog = [];
+        Localization.instance.tr('gender');
+        expect(logged("Localization key [gender] holds gender forms: use tr('gender', gender: ...)"), true);
+      }));
+
+      test('warns that a key leads to nested keys', overridePrint(() {
+        printLog = [];
+        Localization.instance.tr('nested');
+        expect(logged('Localization key [nested] leads to nested keys (super): use one of them, such as nested.super'),
+            true);
+      }));
+
+      test('warns that plural() is used on a text', overridePrint(() {
+        printLog = [];
+        Localization.instance.plural('test', 2);
+        expect(logged("Localization key [test.other] not found: [test] is a text, use tr('test') instead of plural()"),
+            true);
+      }));
+
+      test('warns that a gender is used on a text', overridePrint(() {
+        printLog = [];
+        Localization.instance.tr('test', gender: 'male');
+        expect(logged('Localization key [test.male] not found: [test] is a text, remove the gender'), true);
+      }));
+
+      test('warns that a key is missing', overridePrint(() {
+        printLog = [];
+        Localization.instance.tr('missing_key');
+        expect(logged('Localization key [missing_key] not found'), true);
       }));
 
       test('can resolve any number of nested arguments', () {

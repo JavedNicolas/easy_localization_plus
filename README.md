@@ -595,6 +595,17 @@ If you prefer to not generate keys you can see an audit of your translation keys
 flutter pub run easy_localization_plus:audit
 ```
 
+For each language, the audit lists the keys that are missing, and the keys that exist but are misused, with how to fix them:
+
+```
+Language: en
+  🔴 Missing (1):
+    – titel
+  🟠 Misused (2):
+    – money: holds plural forms, use plural()
+    – title: is a text, used with plural(), use tr()
+```
+
 ### Arguments :
 
 If you are not using the default translations folder path (assets/translations) or the lib folder for your code you can specify your custom paths : 
@@ -611,6 +622,7 @@ If you are not using the default translations folder path (assets/translations) 
 | Code | Description                                                                          | 
 | ---- | ------------------------------------------------------------------------------------ |
 | 1    | Some keys are used in the code that are not present in one of the localization keys  |
+| 1    | Some keys are misused: `tr()` on plural or gender forms, `plural()` or a gender on a text, a key leading to nested keys |
 
 ## 🖨️ Logger
 

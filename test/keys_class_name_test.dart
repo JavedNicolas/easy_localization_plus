@@ -41,23 +41,23 @@ Text(OtherMyKeys.other_title.tr());
     test('finds keys used through LocaleKeys by default', () {
       final keys = KeyParser().parseKeysInSourceDir(srcDir);
 
-      expect(keys, contains('home.title'));
-      expect(keys, isNot(contains('settings.title')));
+      expect(keys, contains('home_title'));
+      expect(keys, isNot(contains('settings_title')));
     });
 
     test('finds keys used through a custom class name', () {
       final keys =
           KeyParser().parseKeysInSourceDir(srcDir, keysClassName: 'MyKeys');
 
-      expect(keys, contains('settings.title'));
-      expect(keys, isNot(contains('home.title')));
+      expect(keys, contains('settings_title'));
+      expect(keys, isNot(contains('home_title')));
     });
 
     test('does not match a class whose name ends with the custom name', () {
       final keys =
           KeyParser().parseKeysInSourceDir(srcDir, keysClassName: 'MyKeys');
 
-      expect(keys, isNot(contains('other.title')));
+      expect(keys, isNot(contains('other_title')));
     });
   });
 }

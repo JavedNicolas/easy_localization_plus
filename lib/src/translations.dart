@@ -37,10 +37,28 @@ class Translations {
     return value;
   }
 
-  /// Whether [key] leads to nested keys instead of a text.
-  bool hasNestedKeys(String key) {
+  /// The names of the keys nested under [key], such as `zero`, `one` and
+  /// `other` for plural forms, or null when [key] does not lead to nested
+  /// keys.
+  List<String>? nestedKeysOf(String key) {
+    final value = _valueAt(key);
+    return value is Map ? value.keys.map((key) => '$key').toList() : null;
+  }
+
+  /// The part of the dotted [key] that leads to a text, such as `title` for
+  /// `title.other`, or null when no part of [key] does.
+  String? textKeyIn(String key) {
+    final parts = key.split('.');
+    for (var i = parts.length - 1; i > 0; i--) {
+      final prefix = parts.sublist(0, i).join('.');
+      if (_valueAt(prefix) is String) return prefix;
+    }
+    return null;
+  }
+
+  dynamic _valueAt(String key) {
     final nestedValue = isNestedKey(key) ? _getNestedValue(key) : null;
-    return (nestedValue ?? _translations?[key]) is Map;
+    return nestedValue ?? _translations?[key];
   }
 
   /// The value at the dotted path [key], or null when a part of the path is
