@@ -7,6 +7,7 @@
 - Linked messages (`@:key`) can contain links, which are resolved too. Circular links are not resolved and log a warning.
 - Fixed two links sharing a prefix (`@:a @:a.b`): the second one was not resolved.
 - Fixed a crash when `@.capitalize:` links to an empty message.
+- Fixed `startLocale` being ignored when `saveLocale` is `false` and a locale is saved in SharedPreferences (#430).
 
 ### [3.0.9]
 

@@ -157,6 +157,87 @@ void main() {
       SharedPreferences.setMockInitialValues({});
     });
 
+    /// https://github.com/aissat/easy_localization/issues/430
+    /// `zz` can never be the device locale, so it cannot be picked by chance.
+    test('controller ignores saved locale and uses start locale when saveLocale is false', () async {
+      SharedPreferences.setMockInitialValues({
+        'locale': 'en',
+      });
+      await EasyLocalization.ensureInitialized();
+      final controller = EasyLocalizationController(
+        supportedLocales: const [Locale('en'), Locale('zz'), Locale('fb')],
+        fallbackLocale: const Locale('fb'),
+        startLocale: const Locale('zz'),
+        path: 'path',
+        useOnlyLangCode: true,
+        useFallbackTranslations: true,
+        onLoadError: (FlutterError e) {
+          log(e.toString());
+        },
+        saveLocale: false,
+        assetLoader: const JsonAssetLoader(),
+      );
+      expect(controller.locale, const Locale('zz'));
+
+      SharedPreferences.setMockInitialValues({});
+      await EasyLocalization.ensureInitialized();
+    });
+
+    test('controller prefers saved locale over start locale when saveLocale is true', () async {
+      SharedPreferences.setMockInitialValues({
+        'locale': 'en',
+      });
+      await EasyLocalization.ensureInitialized();
+      final controller = EasyLocalizationController(
+        supportedLocales: const [Locale('en'), Locale('zz'), Locale('fb')],
+        fallbackLocale: const Locale('fb'),
+        startLocale: const Locale('zz'),
+        path: 'path',
+        useOnlyLangCode: true,
+        useFallbackTranslations: true,
+        onLoadError: (FlutterError e) {
+          log(e.toString());
+        },
+        saveLocale: true,
+        assetLoader: const JsonAssetLoader(),
+      );
+      expect(controller.locale, const Locale('en'));
+
+      SharedPreferences.setMockInitialValues({});
+      await EasyLocalization.ensureInitialized();
+    });
+
+    test('controller ignores saved locale and uses device locale when saveLocale is false without start locale', () async {
+      SharedPreferences.setMockInitialValues({
+        'locale': 'zz',
+      });
+      await EasyLocalization.ensureInitialized();
+      const supportedLocales = [Locale('en'), Locale('zz'), Locale('fb')];
+      final controller = EasyLocalizationController(
+        supportedLocales: supportedLocales,
+        fallbackLocale: const Locale('fb'),
+        path: 'path',
+        useOnlyLangCode: true,
+        useFallbackTranslations: true,
+        onLoadError: (FlutterError e) {
+          log(e.toString());
+        },
+        saveLocale: false,
+        assetLoader: const JsonAssetLoader(),
+      );
+      expect(
+        controller.locale,
+        EasyLocalizationController.selectLocaleFrom(
+          supportedLocales,
+          controller.deviceLocale,
+          fallbackLocale: const Locale('fb'),
+        ),
+      );
+
+      SharedPreferences.setMockInitialValues({});
+      await EasyLocalization.ensureInitialized();
+    });
+
     group('locale', () {
       test('locale supports device locale', () {
         const en = Locale('en');
