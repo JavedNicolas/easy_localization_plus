@@ -115,6 +115,13 @@ class GenerateOptions {
 }
 
 void handleLangFiles(GenerateOptions options) async {
+  if (options.format == 'keys' && !isValidClassName(options.className)) {
+    stderr.writeln('Invalid class name "${options.className}": '
+        'use a Dart identifier, such as LocaleKeys');
+    exitCode = 1;
+    return;
+  }
+
   final current = Directory.current;
   final source = Directory.fromUri(Uri.parse(options.sourceDir!));
   final output = Directory.fromUri(Uri.parse(options.outputDir!));
@@ -145,6 +152,25 @@ void handleLangFiles(GenerateOptions options) async {
     stderr.writeln('Source path empty');
   }
 }
+
+/// Dart reserved words and built-in identifiers, which cannot name a class.
+const _reservedClassNames = {
+  'abstract', 'as', 'assert', 'async', 'await', 'base', 'break', 'case', //
+  'catch', 'class', 'const', 'continue', 'covariant', 'default', 'deferred',
+  'do', 'dynamic', 'else', 'enum', 'export', 'extends', 'extension',
+  'external', 'factory', 'false', 'final', 'finally', 'for', 'Function',
+  'get', 'hide', 'if', 'implements', 'import', 'in', 'interface', 'is',
+  'late', 'library', 'mixin', 'new', 'null', 'on', 'operator', 'part',
+  'required', 'rethrow', 'return', 'sealed', 'set', 'show', 'static',
+  'super', 'switch', 'sync', 'this', 'throw', 'true', 'try', 'type',
+  'typedef', 'var', 'void', 'when', 'while', 'with', 'yield',
+};
+
+/// Whether [name] can be used as the name of the generated keys class.
+bool isValidClassName(String? name) =>
+    name != null &&
+    RegExp(r'^[A-Za-z_$][A-Za-z0-9_$]*$').hasMatch(name) &&
+    !_reservedClassNames.contains(name);
 
 Future<List<FileSystemEntity>> dirContents(Directory dir) {
   var files = <FileSystemEntity>[];

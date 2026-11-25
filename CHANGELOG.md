@@ -9,6 +9,7 @@
 - Fixed a crash when `@.capitalize:` links to an empty message.
 - Fixed `startLocale` being ignored when `saveLocale` is `false` and a locale is saved in SharedPreferences (#430).
 - Added the `--class-name` (`-c`) option to `generate`, to choose the name of the generated keys class (`LocaleKeys` by default).
+- `audit` takes the same `--class-name` option, to find the keys used through a custom keys class. `generate` refuses a class name that is not a valid Dart identifier.
 
 ### [3.0.9]
 

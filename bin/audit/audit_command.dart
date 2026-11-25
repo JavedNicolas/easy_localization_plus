@@ -2,7 +2,12 @@ import 'dart:io';
 import 'key_parser.dart';
 
 class AuditCommand {
-  Future<void> run({required String transDir, required String srcDir, required bool showWarnings}) async {
+  Future<void> run({
+    required String transDir,
+    required String srcDir,
+    required bool showWarnings,
+    String keysClassName = 'LocaleKeys',
+  }) async {
     try {
       final translationDir = Directory(transDir);
       final sourceDir = Directory(srcDir);
@@ -19,7 +24,7 @@ class AuditCommand {
 
       final keyParser = KeyParser();
       final allTranslations = await keyParser.parseKeysInTranslationsDir(translationDir);
-      final usedKeys = keyParser.parseKeysInSourceDir(sourceDir);
+      final usedKeys = keyParser.parseKeysInSourceDir(sourceDir, keysClassName: keysClassName);
 
       _report(allTranslations, usedKeys, showWarnings: showWarnings);
     } catch (e) {
