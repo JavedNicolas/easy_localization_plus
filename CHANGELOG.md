@@ -11,6 +11,7 @@
 - Added the `--class-name` (`-c`) option to `generate`, to choose the name of the generated keys class (`LocaleKeys` by default).
 - `audit` takes the same `--class-name` option, to find the keys used through a custom keys class. `generate` refuses a class name that is not a valid Dart identifier.
 - Fixed `generate -f json` writing a `CodegenLoader` that did not compile. `fileLoader` and `linkedFileResolver` moved from `AssetLoader` to `RootBundleAssetLoader`, with default values: custom `AssetLoader` classes and `const RootBundleAssetLoader()` compile again, as in 3.0.8. `FileLoader` is exported, to pass your own to `RootBundleAssetLoader`.
+- Fixed `tr()` crashing when a key leads to nested keys (plural or gender forms, an object) instead of a text: the key is displayed and a warning says why. A key going through a text (`title.foo`) no longer returns the text of `title`.
 
 ### [3.0.9]
 

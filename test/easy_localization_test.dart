@@ -407,6 +407,35 @@ void main() {
         expect(Localization.instance.tr('linkSharedPrefix'), 'is linked twice');
       });
 
+      test('returns the key when it leads to nested keys', () {
+        expect(Localization.instance.tr('day'), 'day');
+      });
+
+      test('returns the key when a nested key leads to nested keys', () {
+        expect(Localization.instance.tr('nested.super'), 'nested.super');
+      });
+
+      test('returns the key when a nested key goes through a text', () {
+        expect(Localization.instance.tr('test.foo'), 'test.foo');
+      });
+
+      test('does not report a key leading to nested keys as existing', () {
+        expect(Localization.instance.exists('day'), false);
+      });
+
+      test('warns that a key leads to nested keys', overridePrint(() {
+        printLog = [];
+        Localization.instance.tr('day');
+        expect(
+          printLog.any((line) => line.toString().contains('Localization key [day] leads to nested keys')),
+          true,
+        );
+        expect(
+          printLog.any((line) => line.toString().contains('Fallback localization key [day] leads to nested keys')),
+          true,
+        );
+      }));
+
       test('can resolve any number of nested arguments', () {
         expect(Localization.instance.tr('nestedArguments', args: ['a', 'argument', '!']), 'this is a nested argument!');
       });

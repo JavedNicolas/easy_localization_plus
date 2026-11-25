@@ -220,7 +220,8 @@ class Localization {
     if (resource == null ||
         (_useFallbackTranslationsForEmptyResources && resource.isEmpty)) {
       if (logging) {
-        EasyLocalization.logger.warning('Localization key [$key] not found');
+        EasyLocalization.logger
+            .warning(_keyNotFoundMessage('Localization', _translations, key));
       }
       if (_fallbackTranslations == null || !fallback) {
         return key;
@@ -229,14 +230,23 @@ class Localization {
         if (resource == null ||
             (_useFallbackTranslationsForEmptyResources && resource.isEmpty)) {
           if (logging) {
-            EasyLocalization.logger
-                .warning('Fallback localization key [$key] not found');
+            EasyLocalization.logger.warning(_keyNotFoundMessage(
+                'Fallback localization', _fallbackTranslations, key));
           }
           return key;
         }
       }
     }
     return resource;
+  }
+
+  String _keyNotFoundMessage(
+      String label, Translations? translations, String key) {
+    if (translations?.hasNestedKeys(key) == true) {
+      return '$label key [$key] leads to nested keys, not to a text: '
+          'use plural(), a gender or a nested key';
+    }
+    return '$label key [$key] not found';
   }
 
   bool exists(String key) {
